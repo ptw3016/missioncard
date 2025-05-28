@@ -23,7 +23,7 @@ export default defineConfig({
       }
     }
   },
-  base: '/mission_card/',
+  base: '/missioncard/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
