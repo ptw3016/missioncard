@@ -1,170 +1,130 @@
 <template>
-  <section id="about" class="scroll-mt-24 py-20 px-4 relative overflow-hidden">
-    <!-- Animated background -->
-    <div class="absolute inset-0 -z-10 bg-gradient-to-br from-[#f8e8f2] via-white to-[#f8e8f2]">
-      <div class="absolute w-full h-full overflow-hidden opacity-10">
-        <div class="absolute top-0 left-0 w-full h-full">
-          <!-- Animated circles -->
-          <div v-for="i in 3" :key="i" 
-               class="absolute rounded-full mix-blend-multiply animate-float"
-               :class="[
-                 i % 2 === 0 ? 'bg-[#843088]' : 'bg-[#e87054]',
-                 `w-${20 + i * 16} h-${20 + i * 16}`,
-                 `top-${(i * 15) % 80}`,
-                 `left-${(i * 20) % 80}`
-               ]"
-               :style="{
-                 animationDelay: `${i * 0.5}s`,
-                 animationDuration: `${8 + i}s`
-               }">
+  <section id="mission-section" class="mission-hero scroll-mt-24 relative overflow-hidden">
+    <!-- 배경 그라디언트 -->
+    <div class="background-gradient"></div>
+    
+    <!-- 떠다니는 장식 요소들 -->
+    <div class="floating-elements">
+      <div class="floating-shape shape-1"></div>
+      <div class="floating-shape shape-2"></div>
+      <div class="floating-shape shape-3"></div>
+      <div class="floating-shape shape-4"></div>
+      <div class="floating-shape shape-5"></div>
+    </div>
+    
+    <div class="container">
+      <div class="hero-content" data-aos="fade-up">
+        <div class="hero-badge">
+          <span class="badge-icon">🏝️</span>
+          <span>선교지소개</span>
+        </div>
+        
+        <h2 class="hero-title">
+          <span class="subtitle">함께 모이고 흩어지며 세상을 변화시키는</span>
+          <span class="main-title">제주도 <strong>교회</strong></span>
+        </h2>
+        
+        <div class="title-underline"></div>
+        
+        <p class="hero-description">
+          함께 모이고 흩어지며 세상을 변화시키는 신앙 공동체
+        </p>
+      </div>
+      
+      <div class="content-grid">
+        <div class="content-left">
+          <div class="quote-card" data-aos="fade-right" data-aos-delay="200">
+            <p>
+              <i class="fas fa-quote-left text-blue-400 mr-2 opacity-50"></i>
+              제주는 아름다운 자연환경 속에서 선교의 새로운 기회를 제공하는 곳입니다.
+              우리는 제주의 독특한 문화와 환경 속에서 하나님의 사랑을 전하며, 지역 주민들과 함께 신앙 공동체를 이루어 나갑니다.
+            </p>
+          </div>
+          
+          <div class="quote-card" data-aos="fade-right" data-aos-delay="400">
+            <p>
+              <i class="fas fa-quote-left text-sky-400 mr-2 opacity-50"></i>
+              제주 선교는 관광지를 넘어 영적 필요가 있는 곳에 복음을 전하는 사명입니다.
+              섬 곳곳에 흩어진 작은 마을들과 지역사회에서 그리스도의 빛을 비추며, 
+              기도와 예배, 섬김을 통해 제주 땅에 하나님 나라를 세워가는 일에 함께해 주세요.
+            </p>
+          </div>
+          
+          <div class="hero-actions" data-aos="fade-up" data-aos-delay="600">
+            <button class="primary-button">
+              <span class="button-icon"><i class="fas fa-plus-circle"></i></span>
+              <span>더 알아보기</span>
+            </button>
+            <button class="secondary-button">
+              <span class="button-icon"><i class="fas fa-phone-alt"></i></span>
+              <span>연락하기</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="content-right" data-aos="fade-left" data-aos-delay="300">
+          <div class="image-card">
+            <div class="image-overlay"></div>
+            <img 
+              src="@/assets/churchbg.jpg" 
+              alt="제주교회" 
+              class="card-image"/>
+            
+            <div class="image-content">
+              <div class="image-icon">
+                <i class="fas fa-heart"></i>
+              </div>
+              <h3>제주 교회</h3>
+              <p>우리는 모든 삶의 영역에서 그리스도의 제자로 살아갑니다</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
-    <div class="container mx-auto px-2 md:p-4 relative z-10">
-      <div class="bg-white bg-opacity-25 backdrop-blur-lg p-8 md:p-16 rounded-3xl shadow-2xl border border-white border-opacity-40 transform hover:rotate-x-1 transition-transform duration-700">
-        <!-- Header section with floating elements -->
-        <div class="text-center mb-16 relative scroll-reveal fade-up">
-          <!-- Floating decorative elements -->
-          <div class="absolute -top-10 left-1/4 w-16 h-16 bg-[#f8e8f2] rounded-full opacity-60 animate-float" style="animation-delay: 0.5s; animation-duration: 6s;"></div>
-          <div class="absolute -top-5 right-1/4 w-10 h-10 bg-[#f8d8e8] rounded-full opacity-60 animate-float" style="animation-delay: 1s; animation-duration: 7s;"></div>
-          
-          <span class="inline-block py-1 px-4 rounded-full bg-gradient-to-r from-[#f8d8e8] to-[#f8e8f2] text-[#843088] text-sm font-medium mb-4 transform transition-all duration-300 hover:shadow-lg hover:scale-105">
-            <i class="fas fa-wind text-[#bb337f] mr-2"></i>흩어지는 예배
-          </span>
-          
-          <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#843088] to-[#e87054]">Spread out! Bloom again!</span>
-          </h2>
-          
-          <div class="relative w-32 h-2 mx-auto mb-8">
-            <div class="absolute inset-0 bg-gradient-to-r from-[#e87054] to-[#843088] rounded-full"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-[#e87054] to-[#843088] rounded-full animate-pulse"></div>
-          </div>
-          
-          <p class="text-gray-600 max-w-2xl mx-auto text-lg">
-            성령의 바람을 타고, 세상 속에서 다시 피어나는 "흩어지는 예배"
-          </p>
+      
+      <!-- Stats section -->
+      <div class="stats-section">
+        <div class="stats-header" data-aos="fade-up">
+          <h3>제주 선교 현황</h3>
+          <div class="stats-underline"></div>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div class="space-y-8">
-            <!-- Spread out 섹션 -->
-            <div class="bg-white bg-opacity-60 backdrop-blur-sm rounded-xl p-6 shadow-sm border-l-4 border-[#843088] transform transition-all duration-500 hover:shadow-lg hover:-translate-y-1 scroll-reveal fade-right" data-delay="0.2">
-              <h3 class="text-2xl font-bold text-[#843088] mb-3">"Spread out!" – 널리 퍼져라!</h3>
-              <div class="italic text-[#bb337f] text-lg mb-4 pl-4 border-l-2 border-[#f8d8e8]">
-                <p>예배는 멈추는 것이 아니라, 세상으로 퍼지는 운동이다!</p>
-              </div>
-              <ul class="space-y-3 text-gray-700">
-                <li class="flex items-start">
-                  <i class="fas fa-church text-[#e87054] mt-1 mr-3"></i>
-                  <p><span class="font-semibold">물리적 확장:</span> 예배가 예배당에 머무르지 않고 삶의 현장, 도시, 이웃의 삶 속으로 흩어짐</p>
-                </li>
-                <li class="flex items-start">
-                  <i class="fas fa-globe-asia text-[#e87054] mt-1 mr-3"></i>
-                  <p><span class="font-semibold">선교적 파송:</span> 오순절 이후 제자들이 성령의 바람을 타고 각지로 흩어졌듯, 복음을 들고 나아가는 공동체의 정체성</p>
-                </li>
-                <li class="flex items-start">
-                  <i class="fas fa-heart text-[#e87054] mt-1 mr-3"></i>
-                  <p><span class="font-semibold">자발적 흩어짐:</span> 강요된 분산이 아닌, 사랑과 기쁨으로 스스로 나아가는 순종의 실천</p>
-                </li>
-              </ul>
+        <div class="hero-stats" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-item">
+            <div class="stat-icon">
+              <i class="fas fa-map-marker-alt"></i>
             </div>
-            
-            <!-- Bloom again 섹션 -->
-            <div class="bg-white bg-opacity-60 backdrop-blur-sm rounded-xl p-6 shadow-sm border-l-4 border-[#e87054] transform transition-all duration-500 hover:shadow-lg hover:-translate-y-1 scroll-reveal fade-right" data-delay="0.4">
-              <h3 class="text-2xl font-bold text-[#e87054] mb-3">"Bloom again!" – 다시 피어라!</h3>
-              <div class="italic text-[#bb337f] text-lg mb-4 pl-4 border-l-2 border-[#f8d8e8]">
-                <p>흩어진 자리마다, 성령께서 생명을 회복시키시고 부흥을 일으키신다!</p>
-              </div>
-              <ul class="space-y-3 text-gray-700">
-                <li class="flex items-start">
-                  <i class="fas fa-wind text-[#843088] mt-1 mr-3"></i>
-                  <p><span class="font-semibold">성령의 생기:</span> 마른 뼈와 같던 곳에 성령의 생기가 불어 다시 살아나는 공동체와 예배</p>
-                </li>
-                <li class="flex items-start">
-                  <i class="fas fa-seedling text-[#843088] mt-1 mr-3"></i>
-                  <p><span class="font-semibold">새로운 열매:</span> 한 자리에 머물던 예배가 흩어진 자리마다 열매를 맺고, 꽃을 피우는 부흥의 확장</p>
-                </li>
-                <li class="flex items-start">
-                  <i class="fas fa-leaf text-[#843088] mt-1 mr-3"></i>
-                  <p><span class="font-semibold">회복과 생명:</span> 겨울 같은 침체를 지나, 성령 안에서의 생명력 있는 회복</p>
-                </li>
-              </ul>
-            </div>
-            
-            <div class="flex flex-wrap gap-4 mt-10 scroll-reveal fade-up" data-delay="0.6">
-              <button class="px-6 py-3 bg-gradient-to-r from-[#843088] to-[#6b2670] text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 focus:ring-2 focus:ring-offset-2 focus:ring-[#843088] focus:outline-none">
-                <span class="flex items-center justify-center">
-                  <i class="fas fa-wind mr-2"></i>
-                  <span>더 알아보기</span>
-                </span>
-              </button>
-              <button class="px-6 py-3 bg-white text-[#843088] border border-[#f8d8e8] rounded-lg shadow-sm hover:shadow-md hover:border-[#bb337f] hover:bg-[#f8f0f4] transition-all duration-300 transform hover:-translate-y-1">
-                <span class="flex items-center justify-center">
-                  <i class="fas fa-seedling mr-2"></i>
-                  <span>함께하기</span>
-                </span>
-              </button>
-            </div>
+            <div class="stat-number">5+</div>
+            <div class="stat-label">지역 공동체</div>
           </div>
           
-          <div class="relative group scroll-reveal fade-left" data-delay="0.3">
-            <div class="absolute -inset-1 bg-gradient-to-r from-[#e87054] to-[#843088] rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
-            <div class="relative h-[450px] rounded-2xl overflow-hidden shadow-2xl group">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#843088]/60 to-transparent z-10"></div>
-              <img 
-                src="@/assets/main_heroimage.png" 
-                alt="성령의 바람을 타고 흩어지는 예배" 
-                class="absolute inset-0 w-full h-full object-cover transition duration-700 ease-in-out group-hover:scale-110"/>
-              
-              <div class="absolute bottom-0 left-0 right-0 p-8 text-white z-20 transform translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                <div class="flex items-center mb-3">
-                  <div class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-3">
-                    <i class="fas fa-wind text-white"></i>
-                  </div>
-                  <h3 class="text-2xl font-bold">흩어지는 예배의 메시지</h3>
-                </div>
-                <p class="text-white/90">"성령의 바람을 타고 흩어진 우리가, 그 바람이 머무는 자리마다 다시 꽃을 피운다!"</p>
-              </div>
+          <div class="stat-divider"></div>
+          
+          <div class="stat-item">
+            <div class="stat-icon">
+              <i class="fas fa-users"></i>
             </div>
-          </div>
-        </div>
-        
-        <!-- Message section -->
-        <div class="mt-24">
-          <div class="text-center mb-12 scroll-reveal fade-up">
-            <h3 class="text-2xl font-bold text-gray-800 mb-3">흩어지는 예배의 메시지</h3>
-            <div class="w-16 h-1 bg-[#e87054] mx-auto"></div>
+            <div class="stat-number">100+</div>
+            <div class="stat-label">활동 멤버</div>
           </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="p-6 bg-gradient-to-br from-white to-[#f8e8f2] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white border-opacity-60 scroll-reveal fade-up" data-delay="0.1">
-              <div class="flex flex-col items-center">
-                <div class="w-16 h-16 rounded-full bg-[#f8e8f2] flex items-center justify-center mb-4">
-                  <i class="fas fa-wind text-[#843088] text-2xl"></i>
-                </div>
-                <div class="text-[#843088] text-2xl font-bold mb-2">"Spread out"</div>
-                <div class="text-gray-600 text-center">성령에 의한 선교적 확장</div>
-              </div>
+          <div class="stat-divider"></div>
+          
+          <div class="stat-item">
+            <div class="stat-icon">
+              <i class="fas fa-hands-helping"></i>
             </div>
-            
-            <div class="p-6 bg-gradient-to-br from-white to-[#fce8e4] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-white border-opacity-60 scroll-reveal fade-up" data-delay="0.3">
-              <div class="flex flex-col items-center">
-                <div class="w-16 h-16 rounded-full bg-[#fce8e4] flex items-center justify-center mb-4">
-                  <i class="fas fa-seedling text-[#e87054] text-2xl"></i>
-                </div>
-                <div class="text-[#e87054] text-2xl font-bold mb-2">"Bloom again"</div>
-                <div class="text-gray-600 text-center">성령에 의한 거룩한 부흥과 재창조</div>
-              </div>
-            </div>
+            <div class="stat-number">10+</div>
+            <div class="stat-label">사역 프로젝트</div>
           </div>
           
-          <div class="mt-12 p-8 bg-gradient-to-br from-[#f8e8f2] to-white rounded-xl shadow-md border border-white border-opacity-60 text-center scroll-reveal fade-up" data-delay="0.5">
-            <p class="text-xl text-[#843088] italic font-medium">
-              "성령의 바람을 타고 흩어진 우리가, 그 바람이 머무는 자리마다 다시 꽃을 피운다!"
-            </p>
+          <div class="stat-divider"></div>
+          
+          <div class="stat-item">
+            <div class="stat-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <div class="stat-number">3+</div>
+            <div class="stat-label">협력 단체</div>
           </div>
         </div>
       </div>
@@ -175,93 +135,483 @@
 <script>
 export default {
   mounted() {
-    this.initScrollReveal();
+    this.initAOS();
   },
   methods: {
-    initScrollReveal() {
-      // 스크롤 시 요소들이 나타나는 애니메이션 효과 초기화
-      const observerOptions = {
-        root: null, // viewport를 root로 사용
-        rootMargin: '0px',
-        threshold: 0.1 // 요소의 10%가 보일 때 콜백 실행
-      };
-
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const el = entry.target;
-            const delay = el.dataset.delay || 0;
-            
-            // 애니메이션 적용
-            setTimeout(() => {
-              el.classList.add('revealed');
-            }, delay * 1000);
-            
-            // 한 번 나타난 요소는 더 이상 관찰하지 않음
-            observer.unobserve(el);
-          }
+    initAOS() {
+      // AOS 라이브러리를 사용하여 스크롤 애니메이션 초기화
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 800,
+          easing: 'ease-in-out',
+          once: true
         });
-      }, observerOptions);
-
-      // 모든 스크롤 애니메이션 요소 관찰 시작
-      document.querySelectorAll('.scroll-reveal').forEach(el => {
-        observer.observe(el);
-      });
+      } else {
+        // AOS가 로드되지 않은 경우 기본 애니메이션 적용
+        document.querySelectorAll('[data-aos]').forEach(el => {
+          el.classList.add('aos-animate');
+        });
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-/* 애니메이션 효과 */
+.mission-hero {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 104px;    /* Default: 40px (original) + 4rem (64px header) */
+  padding-bottom: 60px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: linear-gradient(135deg, #0891b2 0%, #0ea5e9 25%, #38bdf8 50%, #7dd3fc 75%, #0284c7 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* Small screens and up (sm breakpoint in Tailwind is 640px) */
+@media (min-width: 640px) {
+  .mission-hero {
+    padding-top: 136px; /* sm: 40px + 6rem (96px header) */
+  }
+}
+
+/* Medium screens and up (md breakpoint in Tailwind is 768px) */
+@media (min-width: 768px) {
+  .mission-hero {
+    padding-top: 152px; /* md: 40px + 7rem (112px header) */
+  }
+}
+
+.background-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(1px);
+}
+
+.floating-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: float 8s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 60px;
+  height: 60px;
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 80px;
+  height: 80px;
+  top: 70%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+.shape-3 {
+  width: 40px;
+  height: 40px;
+  top: 40%;
+  left: 80%;
+  animation-delay: 4s;
+}
+
+.shape-4 {
+  width: 100px;
+  height: 100px;
+  top: 20%;
+  right: 30%;
+  animation-delay: 6s;
+}
+
+.shape-5 {
+  width: 70px;
+  height: 70px;
+  bottom: 15%;
+  left: 40%;
+  animation-delay: 3s;
+}
+
 @keyframes float {
-  0% {
-    transform: translateY(0) translateX(0);
-  }
-  50% {
-    transform: translateY(-20px) translateX(10px);
-  }
-  100% {
-    transform: translateY(0) translateX(0);
-  }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-20px) rotate(90deg); }
+  50% { transform: translateY(-10px) rotate(180deg); }
+  75% { transform: translateY(-30px) rotate(270deg); }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
 }
 
-/* 스크롤 애니메이션 클래스 */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
+/* 히어로 콘텐츠 스타일 */
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto 60px;
+  text-align: center;
+  color: white;
 }
 
-.fade-up.revealed {
-  opacity: 1;
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 50px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(5px);
+}
+
+.badge-icon {
+  font-size: 1.2rem;
+}
+
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+.main-title {
+  font-size: 3.5rem;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+.main-title strong {
+  font-weight: 700;
+}
+
+.title-underline {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #38bdf8, #0ea5e9);
+  margin: 0 auto 24px;
+  border-radius: 2px;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto 32px;
+  opacity: 0.9;
+}
+
+/* 콘텐츠 그리드 */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.content-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.quote-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.quote-card:hover {
+  transform: translateY(-5px);
+}
+
+.quote-card p {
+  color: white;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.primary-button, .secondary-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.primary-button {
+  background: white;
+  color: #0891b2;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.secondary-button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.primary-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.secondary-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
+}
+
+.button-icon {
+  font-size: 1.2rem;
+}
+
+/* 이미지 카드 */
+.content-right {
+  perspective: 1000px;
+}
+
+.image-card {
+  position: relative;
+  height: 450px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.content-right:hover .image-card {
+  transform: rotateY(5deg) rotateX(5deg);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(8, 145, 178, 0.6));
+  z-index: 1;
+}
+
+.card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease-in-out;
+}
+
+.image-card:hover .card-image {
+  transform: scale(1.1);
+}
+
+.image-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  z-index: 2;
+  color: white;
+  transform: translateY(5px);
+  opacity: 0.95;
+  transition: all 0.3s ease;
+}
+
+.image-card:hover .image-content {
   transform: translateY(0);
-}
-
-.fade-right.revealed {
   opacity: 1;
-  transform: translateX(0);
 }
 
-.fade-left.revealed {
-  opacity: 1;
-  transform: translateX(0);
+.image-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
 }
 
-.fade-right {
-  transform: translateX(-30px);
+.image-content h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 
-.fade-left {
-  transform: translateX(30px);
+.image-content p {
+  font-size: 1.1rem;
+  opacity: 0.9;
 }
 
-/* 3D 효과 */
-.hover\:rotate-x-1:hover {
-  transform: rotateX(1deg);
+/* 통계 섹션 */
+.stats-section {
+  margin-top: 80px;
+}
+
+.stats-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.stats-header h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.stats-underline {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, #38bdf8, #0ea5e9);
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  padding: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+  color: white;
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 1.5rem;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .hero-stats {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .stat-divider {
+    width: 80%;
+    height: 1px;
+  }
+  
+  .main-title {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .main-title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .quote-card p {
+    font-size: 1rem;
+  }
 }
 </style>

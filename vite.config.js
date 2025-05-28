@@ -1,10 +1,29 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
+import viteImagemin from 'vite-plugin-imagemin'
 
 export default defineConfig({
-  plugins: [vue()],
-  base: '/spread0608/',
+  plugins: [
+    vue(),
+    viteImagemin({
+      gifsicle: { optimizationLevel: 3, interlaced: true },
+      optipng:   { optimizationLevel: 7 },
+      pngquant:  { quality: [0.65, 0.9], speed: 4 },
+      mozjpeg:   { quality: 75 },
+      webp:      { quality: 75 },
+      svgo:      { plugins: [{ removeViewBox: false }] }
+    })
+  ],
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        admin: path.resolve(__dirname, 'admin/index.html') 
+      }
+    }
+  },
+  base: '/mission_card/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -12,12 +31,15 @@ export default defineConfig({
   },
   server: { // <--- server 객체 추가 또는 수정
     proxy: {
-      // '/api'로 시작하는 요청을 http://localhost:8000 으로 전달
       '/api': {
-        target: 'http://localhost', // <<--- 실제 PHP 서버 주소 및 포트
-        changeOrigin: true, // CORS 오류 방지를 위해 필요
-        // rewrite: (path) => path.replace(/^\/api/, '') // 필요에 따라 경로 재작성 (여기서는 필요 없어 보임)
+        target: 'https://spread0608.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '/spread0608/api')
       }
     }
+  },
+  esbuild: {
+    drop: ['console', 'debugger'], // console.log와 debugger 제거
   }
+
 })

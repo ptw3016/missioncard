@@ -1,15 +1,15 @@
 <template>
   <div v-if="isOpen" class="fixed inset-0 z-50 md:hidden">
     <!-- 배경 오버레이 -->
-    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="$emit('close')"></div>
+    <div class="absolute inset-0 bg-black/20 backdrop-blur-sm animate-fade-in" @click="closeMenu"></div>
     
     <!-- 메뉴 패널 -->
-    <div class="absolute right-0 top-0 h-full w-72 bg-gradient-to-br from-[#843088]/80 to-[#6b2670]/80 backdrop-blur-md text-white shadow-2xl transform transition-transform duration-300 border-l border-white/20" @click.stop>
+    <div class="absolute right-0 top-0 h-full w-72 flex flex-col overflow-hidden bg-white text-gray-800 shadow-2xl transform transition-all duration-500 border-l border-white/80 animate-slide-in" :class="{'animate-slide-out': isClosing}" @click.stop>
       <!-- 배경 애니메이션 요소 -->
       <div class="absolute inset-0 overflow-hidden">
         <div v-for="i in 3" :key="`circle-${i}`" 
-             class="absolute rounded-full mix-blend-overlay animate-float opacity-10"
-             :class="i % 2 === 0 ? 'bg-[#e87054]' : 'bg-[#bb337f]'"
+             class="absolute rounded-full mix-blend-soft-light animate-float opacity-30"
+             :class="i % 2 === 0 ? 'bg-[#2a9d8f]' : 'bg-[#1e4e8f]'"
              :style="{
                width: `${100 + i * 50}px`,
                height: `${100 + i * 50}px`,
@@ -22,75 +22,101 @@
       </div>
       
       <!-- 헤더 영역 -->
-      <div class="relative z-10 flex items-center justify-between p-6 border-b border-white/20 bg-white/5 backdrop-blur-sm">
+      <div class="relative z-10 flex items-center justify-between p-6 pt-10 border-b border-[#2a9d8f]/20 bg-white animate-fade-in" style="animation-delay: 0.3s">
         <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mr-3">
-            <i class="fas fa-wind text-[#e87054] text-xl"></i>
+          <div class="w-12 h-12 rounded-full border-2 border-[#2a9d8f] bg-transparent flex items-center justify-center mr-3 shadow-sm">
+            <i class="fas fa-wind text-[#2a9d8f] text-xl"></i>
           </div>
           <div>
-            <h2 class="text-xl font-bold text-white">흩어지는 예배</h2>
-            <p class="text-xs text-[#f8d8e8]">Spread out! Bloom again!</p>
+            <h2 class="text-xl font-bold text-[#0f3b7d] drop-shadow-sm flex items-center whitespace-nowrap">
+              <span class="text-base">흩어지는 예배</span>
+              <span class="mx-0.5 text-xs opacity-80">|</span>
+              <span class="text-xs font-medium">모바일 가이드북</span>
+            </h2>
+            <p class="text-xs text-[#1a8a7d] font-medium">Spread out! Bloom again!</p>
           </div>
         </div>
-        <button @click="$emit('close')" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors focus:outline-none">
+        <button @click="closeMenu" class="absolute top-2 right-2 w-10 h-10 rounded-full bg-white flex items-center justify-center text-gray-600 hover:text-[#1e4e8f] hover:bg-white/50 transition-all duration-300 hover:scale-110 focus:outline-none">
           <i class="fas fa-times"></i>
         </button>
       </div>
       
       <!-- 네비게이션 메뉴 -->
-      <nav class="relative z-10 flex flex-col p-6 space-y-5">
-        <a href="#home" @click.prevent="smoothScroll('home')" 
-           class="mobile-nav-link flex items-center py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">
-          <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center mr-3">
-            <i class="fas fa-home text-[#e87054]"></i>
+      <nav class="relative z-10 flex-1 overflow-y-auto flex flex-col p-4 space-y-0">
+        <!-- <a href="#" @click.prevent="handleHelp"
+           class="mobile-nav-link flex items-center py-3 px-4 rounded-lg hover:bg-white/70 transition-all duration-300 transform hover:translate-x-2 animate-fade-in-up"
+           style="animation-delay: 0.5s">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-r from-[#1e4e8f] to-[#2a9d8f] flex items-center justify-center mr-3 shadow-sm">
+            <i class="fas fa-question-circle text-white text-lg"></i>
           </div>
-          <span class="font-medium">홈</span>
+          <span class="font-semibold text-lg text-[#2c3e50]">도움말</span>
+        </a> -->
+        <a href="#home" @click.prevent="smoothScroll('home')" 
+           class="mobile-nav-link flex items-center py-3 px-4 rounded-lg hover:bg-white/70 transition-all duration-300 transform hover:translate-x-2 animate-fade-in-up"
+           style="animation-delay: 0.5s">
+          <div class="w-12 h-12 rounded-full border border-[#2a9d8f]/50 bg-transparent flex items-center justify-center mr-3">
+            <i class="fas fa-home text-[#2a9d8f] text-lg"></i>
+          </div>
+          <span class="font-semibold text-lg text-[#2c3e50]">홈</span>
         </a>
         
         <a href="#about" @click.prevent="smoothScroll('about')" 
-           class="mobile-nav-link flex items-center py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">
-          <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center mr-3">
-            <i class="fas fa-info-circle text-[#bb337f]"></i>
+           class="mobile-nav-link flex items-center py-3 px-4 rounded-lg hover:bg-white/70 transition-all duration-300 transform hover:translate-x-2 animate-fade-in-up"
+           style="animation-delay: 0.5s">
+          <div class="w-12 h-12 rounded-full border border-[#2a9d8f]/50 bg-transparent flex items-center justify-center mr-3">
+            <i class="fas fa-info-circle text-[#2a9d8f] text-lg"></i>
           </div>
-          <span class="font-medium">사역소개</span>
+          <span class="font-semibold text-lg text-[#2c3e50]">예배소개</span>
         </a>
-        
+
         <a href="#location" @click.prevent="smoothScroll('location')" 
-           class="mobile-nav-link flex items-center py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">
-          <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center mr-3">
-            <i class="fas fa-map-marker-alt text-[#e87054]"></i>
+           class="mobile-nav-link flex items-center py-3 px-4 rounded-lg hover:bg-white/70 transition-all duration-300 transform hover:translate-x-2 animate-fade-in-up"
+           style="animation-delay: 0.5s">
+          <div class="w-12 h-12 rounded-full border border-[#2a9d8f]/50 bg-transparent flex items-center justify-center mr-3">
+            <i class="fas fa-map-marker-alt text-[#2a9d8f] text-lg"></i>
           </div>
-          <span class="font-medium">사역지도</span>
+          <span class="font-semibold text-lg text-[#2c3e50]">교회소개</span>
         </a>
+
+        <!-- <a href="#video" @click.prevent="smoothScroll('video')" 
+           class="mobile-nav-link flex items-center py-3 px-4 rounded-lg hover:bg-white/70 transition-all duration-300 transform hover:translate-x-2 animate-fade-in-up"
+           style="animation-delay: 0.5s">
+          <div class="w-12 h-12 rounded-full border border-[#2a9d8f]/50 bg-transparent flex items-center justify-center mr-3">
+            <i class="fas fa-film text-[#2a9d8f] text-lg"></i>
+          </div>
+          <span class="font-semibold text-lg text-[#2c3e50]">영상소개</span>
+        </a> -->
         
         <a href="#expectations" @click.prevent="smoothScroll('expectations')" 
-           class="mobile-nav-link flex items-center py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">
-          <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center mr-3">
-            <i class="fas fa-seedling text-[#843088]"></i>
+           class="mobile-nav-link flex items-center py-3 px-4 rounded-lg hover:bg-white/70 transition-all duration-300 transform hover:translate-x-2 animate-fade-in-up"
+           style="animation-delay: 0.5s">
+          <div class="w-12 h-12 rounded-full border border-[#2a9d8f]/50 bg-transparent flex items-center justify-center mr-3">
+            <i class="fas fa-seedling text-[#2a9d8f] text-lg"></i>
           </div>
-          <span class="font-medium">기대글</span>
+          <span class="font-semibold text-lg text-[#2c3e50]">기대글</span>
         </a>
         
         <a href="#qna" @click.prevent="smoothScroll('qna')" 
-           class="mobile-nav-link flex items-center py-2 px-3 rounded-lg hover:bg-white/10 transition-colors">
-          <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center mr-3">
-            <i class="fas fa-question-circle text-[#bb337f]"></i>
+           class="mobile-nav-link flex items-center py-3 px-4 rounded-lg hover:bg-white/70 transition-all duration-300 transform hover:translate-x-2 animate-fade-in-up"
+           style="animation-delay: 0.5s">
+          <div class="w-12 h-12 rounded-full border border-[#2a9d8f]/50 bg-transparent flex items-center justify-center mr-3">
+            <i class="fas fa-comments text-[#2a9d8f] text-lg"></i>
           </div>
-          <span class="font-medium">Q&A</span>
+          <span class="font-semibold text-lg text-[#2c3e50]">QnA</span>
         </a>
       </nav>
       
       <!-- 푸터 영역 -->
-      <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-white/20 bg-white/5 backdrop-blur-sm">
+      <div class="mt-auto p-4 border-t border-[#2a9d8f]/20 bg-white animate-fade-in" style="animation-delay: 0.9s">
         <div class="flex space-x-4 justify-center">
-          <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#e87054]/20 transition-colors">
-            <i class="fab fa-facebook-f text-white"></i>
+          <!-- <a href="#" class="w-12 h-12 rounded-full border border-[#2a9d8f]/50 bg-transparent flex items-center justify-center hover:border-[#2a9d8f] transition-all duration-300 hover:scale-110">
+            <i class="fab fa-facebook-f text-[#0f3b7d] text-lg"></i>
           </a>
-          <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#bb337f]/20 transition-colors">
-            <i class="fab fa-instagram text-white"></i>
-          </a>
-          <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#843088]/20 transition-colors">
-            <i class="fab fa-youtube text-white"></i>
+          <a href="#" class="w-12 h-12 rounded-full border border-[#2a9d8f]/50 bg-transparent flex items-center justify-center hover:border-[#2a9d8f] transition-all duration-300 hover:scale-110">
+            <i class="fab fa-instagram text-[#0f3b7d] text-lg"></i>
+          </a> -->
+          <a href="#" class="w-12 h-12 rounded-full border border-[#2a9d8f]/50 bg-transparent flex items-center justify-center hover:border-[#2a9d8f] transition-all duration-300 hover:scale-110">
+            <i class="fab fa-youtube text-[#0f3b7d] text-lg"></i>
           </a>
         </div>
       </div>
@@ -101,10 +127,22 @@
 <script>
 export default {
   props: ['isOpen'],
-  emits: ['close'],
+  emits: ['close', 'help'],
+  data() {
+    return {
+      isClosing: false
+    };
+  },
   methods: {
+    closeMenu() {
+      this.isClosing = true;
+      setTimeout(() => {
+        this.$emit('close');
+        this.isClosing = false;
+      }, 300); // Match this with the animation duration
+    },
     smoothScroll(id) {
-      this.$emit('close'); // 먼저 메뉴 닫기
+      this.closeMenu(); // Use the new closeMenu method instead of directly emitting
       // 메뉴가 닫힌 후 스크롤 실행
       this.$nextTick(() => {
         const el = document.getElementById(id);
@@ -115,6 +153,9 @@ export default {
           window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
         }
       });
+    },
+    handleHelp() {
+      this.$emit('help');
     }
   }
 }
@@ -133,7 +174,7 @@ export default {
   bottom: 0;
   width: 0;
   height: 2px;
-  background-image: linear-gradient(to right, #e87054, #bb337f);
+  background-image: linear-gradient(to right, #2a9d8f, #1e4e8f);
   transition: width 0.3s ease;
 }
 
@@ -155,5 +196,60 @@ export default {
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-out {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes fade-in-up {
+  from { 
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.4s ease-out forwards;
+}
+
+.animate-slide-out {
+  animation: slide-out 0.3s ease-in forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.drop-shadow-glow {
+  filter: drop-shadow(0 0 3px rgba(42, 157, 143, 0.5));
+}
+
+/* Add glass effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 </style>
