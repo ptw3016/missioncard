@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 🔐 HTTPS로 리디렉션
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # index.html 자체 요청은 놔둠
+  RewriteRule ^index\.html$ - [L]
+
+  # 실제 파일이나 디렉터리가 아니면 모두 index.html 로 포워딩
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>

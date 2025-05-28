@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 카카오톡 썸네일용 OG 태그 -->
+    <meta property="og:title" content="제주도_선교 - 모바일 선교기도카드" />
+    <meta property="og:description" content="Spread out! Bloom again!" />
+    <meta property="og:image" content="https://www.spread0608.com/og-image.png" />
+    <meta property="og:url" content="https://www.spread0608.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>제주도_선교 - 모바일 선교기도카드</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/webfont-kr/KoPubDotum@master/KoPubDotum.min.css">
+    <style>
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1503951914875-452162b0f3d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .sermon-card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #4f46e5;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+    </style>
+  <script type="module" crossorigin src="/mission_card/assets/main-BMXKQU5E.js"></script>
+  <link rel="modulepreload" crossorigin href="/mission_card/assets/index-DjlwRNdP.js">
+  <link rel="stylesheet" crossorigin href="/mission_card/assets/main-BBcuo5Kv.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Header 컴포넌트 -->
+        <header-component :is-scrolled="isScrolled" @toggle-menu="toggleMenu"></header-component>
+
+        <!-- Mobile Menu 컴포넌트 -->
+        <mobile-menu :is-open="isMenuOpen" @close="toggleMenu"></mobile-menu>
+
+        <!-- Hero 섹션 -->
+        <hero-section></hero-section>
+
+        <!-- About 섹션 -->
+        <about-section></about-section>
+
+        <!-- Sermons 섹션 -->
+        <sermons-section></sermons-section>
+
+        <!-- Events 섹션 -->
+        <events-section></events-section>
+
+        <!-- Ministries 섹션 -->
+        <ministries-section></ministries-section>
+
+        <!-- Contact 섹션 -->
+        <contact-section></contact-section>
+
+        <!-- Footer 컴포넌트 -->
+        <footer-component></footer-component>
+    </div>
+
+</body>
+
+</html>
